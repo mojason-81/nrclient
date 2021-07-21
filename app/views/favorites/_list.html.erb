@@ -5,15 +5,29 @@
            data-css-status-value="false">
     <div class="text-3xl font-bold">
       Favorite Concerts
-      <button class="<%= SimpleForm.button_class %> p-1 text-xl font-semibold"
-              data-controller="text"
-              data-favorite-toggle-target="elementWithText"
-              data-text-target="elementWithText"
-              data-text-status-value="false"
-              data-text-off-value="Hide"
-              data-text-on-value="Show"
-              data-action="click->css#toggle click->text#toggle">
+      <button class="<%= SimpleForm.button_class %>"
+              data-controller="css-flip"
+              data-css-flip-status-value="true"
+              data-css-flip-off-class="is-closed"
+              data-css-flip-on-class="is-open"
+              data-action="click->css#toggle click->css-flip#toggle">
+        <%= image_pack_tag(
+              "chevron-right.svg",
+              width: 25,
+              height: 25,
+              class: "inline mb-3",
+              "data-css-flip-target": "elementToChange"
+            ) %>
       </button>
+<!--      <button class="<%#= SimpleForm.button_class %> p-1 text-xl font-semibold"-->
+<!--              data-controller="text"-->
+<!--              data-favorite-toggle-target="elementWithText"-->
+<!--              data-text-target="elementWithText"-->
+<!--              data-text-status-value="false"-->
+<!--              data-text-off-value="Hide"-->
+<!--              data-text-on-value="Show"-->
+<!--              data-action="click->css#toggle click->text#toggle">-->
+<!--      </button>-->
       <div data-css-target="elementToChange">
         <div class="text-xl font-bold" id="no-favorites">
           <% if current_user.favorites.empty? %>
