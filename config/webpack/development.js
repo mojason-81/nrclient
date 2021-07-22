@@ -11,3 +11,9 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 const webpackConfig = require('./base')
 
 module.exports = webpackConfig
+
+Object.defineProperty(RegExp.prototype, "toJSON", {
+    value: RegExp.prototype.toString()
+});
+
+console.log(JSON.stringify(module.exports, null, 2));

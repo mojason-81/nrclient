@@ -19,3 +19,17 @@ const imagePath = (name) => images(name, true);
 
 Rails.start();
 ActiveStorage.start();
+
+document.addEventListener("turbo:before-stream-render", (event) => {
+  if (event.target.action == "remove") {
+    const targetFrame = document.getElementById(event.target.target);
+    if (targetFrame.dataset.animateOut) {
+      event.preventDefault();
+      const elementBeingAnimated = targetFrame;
+      elementBeingAnimated.classList.add(targetFrame.dataset.animateOut);
+      elementBeingAnimated.addEventListener("animationend", () => {
+        targetFrame.remove();
+      });
+    }
+  }
+});
